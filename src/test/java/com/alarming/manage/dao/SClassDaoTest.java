@@ -46,7 +46,7 @@ public class SClassDaoTest {
 
     @Test
     public void testFindByName(){
-        List<SClass> sClassList = sClassDao.findByName("软件工程2101");
+        SClass sClassList = sClassDao.findByName("软件工程2101");
         log.info(sClassList.toString());
     }
     @Test

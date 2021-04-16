@@ -2,6 +2,7 @@ package com.alarming.manage.service.impl;
 
 import com.alarming.manage.objectdata.SClass;
 import com.alarming.manage.service.SClassService;
+import com.alarming.manage.vo.ClassVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +35,11 @@ public class SClassServiceImplTest {
     public void findByDepartment() {
         List<SClass> classList = sClassService.findByDepartment(3);
         log.info(classList.toString());
+    }
+    @Test
+    public void findByDepartmentIdOrMajorId(){
+        List<ClassVO> list = sClassService.findByDepartmentIdOrMajorId(0, 1);
+        log.info(String.valueOf(list));
     }
 
 }

@@ -84,5 +84,9 @@ import java.util.Optional;
         List<Student> studentList = studentDao.findAll();
         System.out.println(studentList);
     }
-
+    @Test
+    public void findCountByClassId(){
+        Integer count = studentDao.findCountByClassId(4);
+        log.info(String.valueOf(count));
+    }
 }

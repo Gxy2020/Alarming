@@ -109,6 +109,12 @@ public class CounsellorServiceImpl implements CounsellorService{
         return counsellorList;
     }
 
+    /**
+     * 多条件查询
+     * @param username
+     * @param phone
+     * @return
+     */
     @Override
     public List<Counsellor> findByUsernameOrPhone(String username, String phone) {
         Specification <Counsellor> specification=new Specification<Counsellor>() {

@@ -4,6 +4,7 @@ import com.alarming.manage.objectdata.Department;
 import com.alarming.manage.objectdata.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -19,4 +20,7 @@ public interface StudentDao extends JpaRepository<Student,Integer> , JpaSpecific
 
 //    List<Student>findByDepartments(Department department);
     Student findByUser(String user);
+    //按照班级id查找学生人数
+    @Query(value = "SELECT count(sc_id) from t_student where sc_id=?1",nativeQuery = true)
+    Integer findCountByClassId(Integer classId);
 }

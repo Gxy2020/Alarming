@@ -2,6 +2,7 @@ package com.alarming.manage.service;
 
 import com.alarming.manage.objectdata.Student;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

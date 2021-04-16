@@ -20,14 +20,14 @@ public interface SClassDao extends JpaRepository<SClass,Integer>, JpaSpecificati
 
     List<SClass>findByDepartment(Department department);
 
-    List<SClass>findByName(String name);
+    SClass findByName(String name);
 
     @Query(value = "select class_id from t_class where dc_id=?1",nativeQuery = true)
     List<Integer>findByDepartmentId(Integer departmentId);
 
     @Query(value = "select class_id from t_class",nativeQuery = true)
     List<Integer>findClassId();
-
+    //根据List的id的查询班级
     @Query(value = "select * from t_class where class_id in ?1",nativeQuery = true)
     List<SClass> findList(List<Integer> classId);
     //根据院系id查询所在的班级数目

@@ -9,10 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,7 +31,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @ApiOperation(value = "系统管理员登录接口")
+    @ApiOperation(value = "学生登录接口")
     @PostMapping("/login")
     public ResultVO login(String user , String password, HttpSession session, HttpServletRequest request){
         Student student = studentService.findByUserAndPassword(user, password);
@@ -54,7 +51,7 @@ public class StudentController {
         }
     }
 
-    @RequestMapping("/findStudentPage")
+    @GetMapping("/findStudentPage")
     public ResultVO findStudentPage(@RequestParam(value = "pageNum" , defaultValue = "0")int pageNum,
                                     @RequestParam("pageSize")int pageSize,String str){
         Page<Student> studentPage = studentService.findStudentPage(pageNum,pageSize,str);

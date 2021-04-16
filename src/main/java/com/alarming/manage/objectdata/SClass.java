@@ -24,7 +24,7 @@ public class SClass {
     private String name;
 
     @Column(name = "create_time")
-    private Date createTime;
+    private String createTime;
 
     @ManyToOne(targetEntity = Major.class)
     @JoinColumn(name = "mc_id")
@@ -74,11 +74,11 @@ public class SClass {
         this.name = name;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
