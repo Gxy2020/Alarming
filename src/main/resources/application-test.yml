@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost/manager_student?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8 #本机mysql
+
+  jpa:
+    show-sql: true
+  jackson:
+    default-property-inclusion: non_null #返回值为null不返回
+server:
+  servlet:
+    context-path: /
+  port: 8888
+logging:
+  pattern:
+    console: "%d - %msg%n"
+  file:
+    name: E:/log/Alarming.log
+  level:
+    root: info

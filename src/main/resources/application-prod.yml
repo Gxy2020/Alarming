@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost/manager_student?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8 #本机mysql/
+  jpa:
+    show-sql: true
+server:
+  servlet:
+    context-path: /
+  port: 8080
+#swagger 开关
+#swagger2:
+#   enable: true
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#  file:
+#    name: E:/log/lab.log
+#  level: debug
