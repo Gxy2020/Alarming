@@ -6,6 +6,7 @@ import com.alarming.manage.vo.ScoresVO;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author GUO
@@ -19,5 +20,7 @@ public interface ScoreService {
     boolean saveScore(Score score);
     boolean delScore(Integer id);
     boolean updateScore(Integer id,Integer score);
+    List<Map<String,Object>> findCodToAverage();
+    List<Map<String,Object>> findCodeFailed();
 //    Page<ScoresVO> findScoresVOPage(Integer pageNum, Integer size);
 }

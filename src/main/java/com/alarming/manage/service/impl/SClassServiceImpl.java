@@ -151,6 +151,12 @@ public class SClassServiceImpl implements SClassService {
         }
     }
 
+    @Override
+    public Integer findClassCount() {
+        Integer classCount = sClassDao.countAllBy();
+        return classCount;
+    }
+
     // 工具方法
     public List<ClassVO> ToClassVo(List<SClass> classList){
         List list = new ArrayList();

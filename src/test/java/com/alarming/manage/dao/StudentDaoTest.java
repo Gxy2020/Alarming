@@ -84,8 +84,12 @@ import java.util.List;
     }
     @Test
     public void findBySClass(){
-        SClass one = sclassDao.getOne(2);
-//        List<Student> studentList = studentDao.findBySclass(one);
-//        log.info(studentList.toString());
+        List<Student> studentList = studentDao.findBysClass(1);
+        log.info(studentList.toString());
+    }
+    @Test
+    public void findStudentCount(){
+        Integer integer = studentDao.countAllBy();
+        log.info(String.valueOf(integer));
     }
 }

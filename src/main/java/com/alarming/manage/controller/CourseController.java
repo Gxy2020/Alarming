@@ -46,4 +46,9 @@ public class CourseController {
         List<Course> courseList = courseService.findAll();
         return ResultVOUtil.success(courseList);
     }
+    @GetMapping("/findCourseCount")
+    public ResultVO findCourseCount(){
+        Integer courseCount = courseService.findCourseCount();
+        return ResultVOUtil.success(courseCount);
+    }
 }

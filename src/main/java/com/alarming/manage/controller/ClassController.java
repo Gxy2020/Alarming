@@ -55,7 +55,11 @@ public class ClassController {
         List<Map<String, Object>> list = sClassService.findByMajorId(majorId);
         return ResultVOUtil.success(list);
     }
-
+    @GetMapping("/findClassCount")
+    public ResultVO findClassCount(){
+        Integer classCount = sClassService.findClassCount();
+        return ResultVOUtil.success(classCount);
+    }
     /**
      * 查询班级table的对象
      */

@@ -16,4 +16,5 @@ public interface CourseService {
     boolean saveCourse(Course course);
     boolean delCourse(Integer id);
     List<Course>findAll();
+    Integer findCourseCount();
 }

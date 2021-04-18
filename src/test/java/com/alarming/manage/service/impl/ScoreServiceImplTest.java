@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -29,5 +30,15 @@ public class ScoreServiceImplTest {
     public void findAll() {
         List<ScoresVO> scoresVOList = scoreService.findAll();
         log.info(scoresVOList.toString());
+    }
+    @Test
+    public void findCodToAverage(){
+        List<Map<String, Object>> mapList = scoreService.findCodToAverage();
+        log.info(String.valueOf(mapList));
+    }
+    @Test
+    public void findCodeFailed(){
+        List<Map<String, Object>> mapList = scoreService.findCodeFailed();
+        log.info(String.valueOf(mapList));
     }
 }

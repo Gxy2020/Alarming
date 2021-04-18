@@ -68,10 +68,15 @@ public class StudentController {
         boolean b = studentService.delStudent(id);
         return b? ResultVOUtil.success():ResultVOUtil.error(500,"删除失败");
     }
-    @GetMapping("/findByClassId/{classId}")
-    public ResultVO findByClassId(@PathVariable Integer classId){
-        List<Student> studentList = studentService.findBySClassId(classId);
+    @PostMapping("/findByDepartmentIdOrClassId")
+    public ResultVO findByDepartmentIdOrClassId(Integer departmentId, Integer classId){
+        List<Student> studentList = studentService.findByDepartmentIdOrClassId(departmentId, classId);
         return ResultVOUtil.success(studentList);
+    }
+    @GetMapping("/findStudentCount")
+    public ResultVO findStudentCount(){
+        Integer studentCount = studentService.findStudentCount();
+        return ResultVOUtil.success(studentCount);
     }
 
 }

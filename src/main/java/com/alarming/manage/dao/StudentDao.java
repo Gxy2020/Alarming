@@ -2,6 +2,7 @@ package com.alarming.manage.dao;
 
 import com.alarming.manage.objectdata.SClass;
 import com.alarming.manage.objectdata.Student;
+import io.swagger.models.auth.In;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -26,5 +27,9 @@ public interface StudentDao extends JpaRepository<Student,Integer> , JpaSpecific
     Integer findCountByClassId(Integer classId);
 
     //通过班级id查询学生
-//    List<Student>findBySclass(SClass sClass);
+    @Query(value = "select * from t_student where sc_id=?1",nativeQuery = true)
+    List<Student>findBysClass(Integer classId);
+    @Query(value = "select * from t_student where sd_id=?1",nativeQuery = true)
+    List<Student>findByDepartmentId(Integer departmentId);
+    Integer countAllBy();
 }

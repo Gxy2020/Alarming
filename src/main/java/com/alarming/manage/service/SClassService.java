@@ -21,5 +21,5 @@ public interface SClassService {
     List<ClassVO>findByDepartmentIdOrMajorId(Integer departmentId ,Integer majorId);
     List<Map<String,Object>>findByMajorId(Integer majorId);
     boolean saveClass(Integer departmentId,Integer majorId,String name);
-
+    Integer findClassCount();
 }

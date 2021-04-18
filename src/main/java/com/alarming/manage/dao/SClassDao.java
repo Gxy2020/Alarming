@@ -35,4 +35,5 @@ public interface SClassDao extends JpaRepository<SClass,Integer>, JpaSpecificati
     //根据院系id查询所在的班级数目
     @Query(value = "SELECT COUNT(dc_id) FROM t_class WHERE dc_id=?1",nativeQuery = true)
     Integer findClassNum(Integer departmentId);
+    Integer countAllBy();
 }

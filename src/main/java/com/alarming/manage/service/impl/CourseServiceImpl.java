@@ -61,4 +61,10 @@ public class CourseServiceImpl implements CourseService {
         List<Course> courseList = courseDao.findAll();
         return courseList;
     }
+
+    @Override
+    public Integer findCourseCount() {
+        Integer CourseCount = courseDao.countAllBy();
+        return CourseCount;
+    }
 }

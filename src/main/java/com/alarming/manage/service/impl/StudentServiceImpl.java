@@ -16,8 +16,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.*;
 import java.util.List;
 
 /**
@@ -97,9 +99,45 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> findBySClassId(Integer classId) {
-        SClass sClass = sClassDao.getOne(classId);
-//        List<Student> studentList = studentDao.findBySclass(sClass);
-        return null;
+    public List<Student> findByClassId(Integer classId) {
+        List<Student> studentList = studentDao.findBysClass(classId);
+        return studentList;
     }
+
+    @Override
+    public List<Student> findByDepartmentIdOrClassId(Integer departmentId, Integer classId) {
+        if (departmentId!=null&classId!=null){
+            Specification<Student>specification=new Specification<Student>() {
+                @Override
+                public Predicate toPredicate(Root<Student> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                    Department one = departmentDao.getOne(departmentId);
+                    SClass two = sClassDao.getOne(classId);
+                    Path<Object> path = root.get("departments");
+                    Path<Object> sClass = root.get("sClass");
+                    Predicate p1 = criteriaBuilder.equal(path, one);
+                    Predicate p2 = criteriaBuilder.equal(sClass, two);
+                    Predicate or = criteriaBuilder.or(p1, p2);
+                    return or;
+                }
+            };
+            List<Student> studentList = studentDao.findAll(specification);
+            return studentList;
+        }if (departmentId==null&classId!=null){
+            List<Student> studentList = studentDao.findBysClass(classId);
+            return studentList;
+        }if (departmentId!=null&classId==null){
+            List<Student> studentList = studentDao.findByDepartmentId(departmentId);
+            return studentList;
+        }else {
+            List<Student> studentList = studentDao.findAll();
+            return studentList;
+        }
+    }
+
+    @Override
+    public Integer findStudentCount() {
+        Integer studentCount = studentDao.countAllBy();
+        return studentCount;
+    }
+
 }

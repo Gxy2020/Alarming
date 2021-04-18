@@ -24,5 +24,7 @@ public interface StudentService {
 
     List<String>findByDepartment(String departmentName);
     List<Student>findByClassName(String className);
-    List<Student>findBySClassId(Integer classId);
+    List<Student>findByClassId(Integer classId);
+    List<Student>findByDepartmentIdOrClassId(Integer departmentId,Integer classId);
+    Integer findStudentCount();
 }

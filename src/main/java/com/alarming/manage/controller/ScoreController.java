@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author GUO
@@ -55,5 +56,16 @@ public class ScoreController {
     public ResultVO updateScore(Integer id,Integer score){
         scoreService.updateScore(id,score);
         return ResultVOUtil.success();
+    }
+    //查询所有各科平均数
+    @GetMapping("/findCodToAverage")
+    public ResultVO findCodToAverage(){
+        List<Map<String, Object>> mapList = scoreService.findCodToAverage();
+        return ResultVOUtil.success(mapList);
+    }
+    @GetMapping("/findCodeFailed")
+    public ResultVO findCodeFailed(){
+        List<Map<String, Object>> mapList =scoreService.findCodeFailed();
+        return ResultVOUtil.success(mapList);
     }
 }
