@@ -1,9 +1,5 @@
 package com.alarming.manage.dao;
 
-import com.alarming.manage.enums.ResultEnums;
-import com.alarming.manage.exception.AlarmingException;
-import com.alarming.manage.objectdata.Department;
-import com.alarming.manage.objectdata.Major;
 import com.alarming.manage.objectdata.SClass;
 import com.alarming.manage.objectdata.Student;
 import lombok.extern.slf4j.Slf4j;
@@ -12,11 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author GUO
@@ -88,5 +81,11 @@ import java.util.Optional;
     public void findCountByClassId(){
         Integer count = studentDao.findCountByClassId(4);
         log.info(String.valueOf(count));
+    }
+    @Test
+    public void findBySClass(){
+        SClass one = sclassDao.getOne(2);
+//        List<Student> studentList = studentDao.findBySclass(one);
+//        log.info(studentList.toString());
     }
 }

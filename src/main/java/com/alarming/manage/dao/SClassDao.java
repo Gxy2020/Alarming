@@ -1,13 +1,13 @@
 package com.alarming.manage.dao;
 
 import com.alarming.manage.objectdata.Department;
-import com.alarming.manage.objectdata.Major;
 import com.alarming.manage.objectdata.SClass;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author GUO
@@ -16,7 +16,9 @@ import java.util.List;
  * @Date 2021/4/6 22:40
  */
 public interface SClassDao extends JpaRepository<SClass,Integer>, JpaSpecificationExecutor<SClass> {
-    List<SClass>findByMajor(Major major);
+
+    @Query(value = "select class_name ,class_id from t_class where mc_id=?1" ,nativeQuery = true)
+    List<Map<String,Object>>findByMajorId(Integer majorId);
 
     List<SClass>findByDepartment(Department department);
 

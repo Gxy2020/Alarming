@@ -55,13 +55,13 @@ public class TeacherServiceImpl implements TeacherService {
             if(departmentId != null & classId != null) {
                 Department department = departmentDao.getOne(departmentId);
                 SClass sClass = sClassDao.getOne(classId);
-                teacher.setTDepartment(department);
-                teacher.setSClass(sClass);
+                teacher.settDepartment(department);
+                teacher.setsClass(sClass);
                 teacherDao.save(teacher);
                 return true;
             }if (departmentId != null& classId == null ){
                 Department department = departmentDao.getOne(departmentId);
-                teacher.setTDepartment(department);
+                teacher.settDepartment(department);
                 teacherDao.save(teacher);
                 return true;
             }

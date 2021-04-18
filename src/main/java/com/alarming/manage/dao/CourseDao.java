@@ -11,4 +11,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @Date 2021/4/17 3:14
  */
 public interface CourseDao extends JpaRepository<Course,Integer> , JpaSpecificationExecutor<Course> {
+    Course findByNameOrCode(String name,String code);
+    Course findByCode(String code);
 }

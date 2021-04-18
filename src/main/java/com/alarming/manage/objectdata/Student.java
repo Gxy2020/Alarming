@@ -1,10 +1,9 @@
 package com.alarming.manage.objectdata;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * @author GUO
@@ -13,6 +12,7 @@ import java.util.Date;
  * @Date 2021/3/25 21:57
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name = "t_student")
 public class Student {
@@ -58,6 +58,7 @@ public class Student {
     @ManyToOne(targetEntity = SClass.class)
     @JoinColumn(name = "sc_id")
     private SClass sClass;
+
 
     @Override
     public String toString() {

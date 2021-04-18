@@ -1,6 +1,6 @@
 package com.alarming.manage.dao;
 
-import com.alarming.manage.objectdata.Department;
+import com.alarming.manage.objectdata.SClass;
 import com.alarming.manage.objectdata.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -19,8 +19,12 @@ public interface StudentDao extends JpaRepository<Student,Integer> , JpaSpecific
     Student findByUserAndPassword(String user,String password);
 
 //    List<Student>findByDepartments(Department department);
+    //通过学号查找该学生
     Student findByUser(String user);
     //按照班级id查找学生人数
     @Query(value = "SELECT count(sc_id) from t_student where sc_id=?1",nativeQuery = true)
     Integer findCountByClassId(Integer classId);
+
+    //通过班级id查询学生
+//    List<Student>findBySclass(SClass sClass);
 }

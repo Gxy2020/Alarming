@@ -1,5 +1,6 @@
 package com.alarming.manage.service.impl;
 
+import com.alarming.manage.dao.SClassDao;
 import com.alarming.manage.objectdata.SClass;
 import com.alarming.manage.service.SClassService;
 import com.alarming.manage.vo.ClassVO;
@@ -11,8 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
+import java.util.Map;
 
 /**
  * @author GUO
@@ -23,9 +23,11 @@ import static org.junit.Assert.*;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SClassServiceImplTest {
+public class sClassServiceImplTest {
     @Autowired
     private SClassService sClassService;
+    @Autowired
+    private SClassDao sClassDao;
 
     @Test
     public void findAll() {
@@ -41,5 +43,10 @@ public class SClassServiceImplTest {
         List<ClassVO> list = sClassService.findByDepartmentIdOrMajorId(0, 1);
         log.info(String.valueOf(list));
     }
+    @Test
+    public void findByMajorId(){
+        List<Map<String, Object>> byMajorId = sClassDao.findByMajorId(2);
+        log.info(byMajorId.toString());
 
+    }
 }

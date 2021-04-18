@@ -1,11 +1,10 @@
 package com.alarming.manage.service;
 
-import com.alarming.manage.objectdata.Department;
 import com.alarming.manage.objectdata.SClass;
 import com.alarming.manage.vo.ClassVO;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -20,6 +19,7 @@ public interface SClassService {
     List<SClass>findByDepartmentId(Integer departmentId);
     List<ClassVO>findClassVO();
     List<ClassVO>findByDepartmentIdOrMajorId(Integer departmentId ,Integer majorId);
+    List<Map<String,Object>>findByMajorId(Integer majorId);
     boolean saveClass(Integer departmentId,Integer majorId,String name);
 
 }

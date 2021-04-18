@@ -6,12 +6,12 @@ import com.alarming.manage.utils.ResultVOUtil;
 import com.alarming.manage.vo.ClassVO;
 import com.alarming.manage.vo.ResultVO;
 import io.swagger.annotations.Api;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author GUO
@@ -49,6 +49,11 @@ public class ClassController {
     public ResultVO findClassList(@PathVariable Integer departmentId) {
         List<SClass> classList = sClassService.findByDepartment(departmentId);
         return ResultVOUtil.success(classList);
+    }
+    @GetMapping("/findByMajorId/{majorId}")
+    public ResultVO findByMajorId(@PathVariable Integer majorId){
+        List<Map<String, Object>> list = sClassService.findByMajorId(majorId);
+        return ResultVOUtil.success(list);
     }
 
     /**

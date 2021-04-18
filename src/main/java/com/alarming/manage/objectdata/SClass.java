@@ -8,10 +8,11 @@ import java.util.*;
 
 /**
  * @author GUO
- * @Classname Clas
+ * @Classname Class
  * @Description TODO
  * @Date 2021/4/5 23:06
  */
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name = "t_class")
 public class SClass {
@@ -20,7 +21,7 @@ public class SClass {
     @Column(name = "class_id")
     private int classId;
 
-    @Column(name = "name")
+    @Column(name = "class_name")
     private String name;
 
     @Column(name = "create_time")
@@ -38,17 +39,16 @@ public class SClass {
     @OneToMany(mappedBy = "sClass",fetch = FetchType.LAZY)
     private Set<Student> cStudents =new HashSet<>();
 
-
-    @Override
-    public String toString() {
-        return "Class{" +
-                "classId=" + classId +
-                ", name='" + name + '\'' +
-                ", createTime=" + createTime +
-                ", majorName=" + major.getName() +
-                ", departmentName=" + major.getDepartment().getName() +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Class{" +
+//                "classId=" + classId +
+//                ", name='" + name + '\'' +
+//                ", createTime=" + createTime +
+//                ", majorName=" + major.getName() +
+//                ", departmentName=" + major.getDepartment().getName() +
+//                '}';
+//    }
 
     public Department getDepartment() {
         return department;

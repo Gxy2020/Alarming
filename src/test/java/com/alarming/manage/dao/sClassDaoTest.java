@@ -1,6 +1,5 @@
 package com.alarming.manage.dao;
 
-import com.alarming.manage.objectdata.Major;
 import com.alarming.manage.objectdata.SClass;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -25,7 +24,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SClassDaoTest {
+public class sClassDaoTest {
     @Autowired
     private MajorDao majorDao;
     @Autowired
@@ -39,9 +38,9 @@ public class SClassDaoTest {
     }
     @Test
     public void testFindByMajor(){
-        Major major = majorDao.findByName("软件工程");
-        List<SClass> sClassList = sClassDao.findByMajor(major);
-        log.info(sClassList.toString());
+//        Major major = majorDao.findByName("软件工程");
+//        List<SClass> sClassList = sClassDao.findByMajor(major);
+//        log.info(sClassList.toString());
     }
 
     @Test

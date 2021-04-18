@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,6 +57,21 @@ public class StudentController {
                                     @RequestParam("pageSize")int pageSize,String str){
         Page<Student> studentPage = studentService.findStudentPage(pageNum,pageSize,str);
         return ResultVOUtil.success(studentPage);
-
     }
+    @PostMapping("/saveStudent")
+    public ResultVO saveStudent(Student student,Integer departmentId,Integer classId,Integer majorId){
+        boolean b = studentService.saveStudent(student, departmentId, classId, majorId);
+        return b? ResultVOUtil.success():ResultVOUtil.error(500,"保存错误");
+    }
+    @DeleteMapping("/delStudent/{id}")
+    public ResultVO delStudent(@PathVariable Integer id){
+        boolean b = studentService.delStudent(id);
+        return b? ResultVOUtil.success():ResultVOUtil.error(500,"删除失败");
+    }
+    @GetMapping("/findByClassId/{classId}")
+    public ResultVO findByClassId(@PathVariable Integer classId){
+        List<Student> studentList = studentService.findBySClassId(classId);
+        return ResultVOUtil.success(studentList);
+    }
+
 }

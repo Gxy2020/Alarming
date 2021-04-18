@@ -1,11 +1,10 @@
 package com.alarming.manage.objectdata;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.print.attribute.standard.MediaSize;
-import java.util.Date;
 
 /**
  * @author GUO
@@ -13,7 +12,7 @@ import java.util.Date;
  * @Description TODO
  * @Date 2021/3/25 21:58
  */
-@Data
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name = "t_teacher")
 public class Teacher {
@@ -36,7 +35,6 @@ public class Teacher {
     @Column(name = "create_time")
     private String createTime;
 
-    @JsonIgnore
     @ManyToOne(targetEntity = Department.class)
     @JoinColumn(name = "department_id")
     private Department tDepartment;
@@ -60,5 +58,85 @@ public class Teacher {
 //                ", tDepartment=" + tDepartment.getName() +
                 ", sClass=" + sClass.getName() +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public Department gettDepartment() {
+        return tDepartment;
+    }
+
+    public void settDepartment(Department tDepartment) {
+        this.tDepartment = tDepartment;
+    }
+
+    public SClass getsClass() {
+        return sClass;
+    }
+
+    public void setsClass(SClass sClass) {
+        this.sClass = sClass;
     }
 }

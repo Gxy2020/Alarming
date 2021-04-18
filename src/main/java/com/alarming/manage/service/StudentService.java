@@ -16,13 +16,13 @@ import java.util.List;
 public interface StudentService {
     Student findByUserAndPassword(String user,String password);
 
-    boolean saveStudent(Student student);
+    boolean saveStudent(Student student,Integer departmentId,Integer classId,Integer majorId);
 
     boolean delStudent(int id);
 
     Page<Student> findStudentPage(Integer pageNum,Integer size,String str);
 
     List<String>findByDepartment(String departmentName);
-
     List<Student>findByClassName(String className);
+    List<Student>findBySClassId(Integer classId);
 }

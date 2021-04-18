@@ -39,9 +39,11 @@ public class Department {
     @OneToMany(mappedBy = "departments",fetch =FetchType.LAZY )
     private Set<Student>dStudents=new HashSet<>();
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "tDepartment")
-//    private List<Teacher>teachers=new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "tDepartment",fetch =FetchType.LAZY)
+    private Set<Teacher>teachers=new HashSet<>();
+
     @JsonIgnore
     @OneToMany(mappedBy = "department",fetch = FetchType.LAZY)
     private Set<Counsellor>counsellors=new HashSet<>();

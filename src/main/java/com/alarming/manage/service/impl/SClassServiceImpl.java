@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -125,6 +126,12 @@ public class SClassServiceImpl implements SClassService {
                 list.add(classVO);
             }*/
         return classVOList;
+    }
+
+    @Override
+    public List<Map<String,Object>> findByMajorId(Integer majorId) {
+        List<Map<String, Object>> list = sClassDao.findByMajorId(majorId);
+        return list;
     }
 
     @Override
