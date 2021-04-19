@@ -2,6 +2,7 @@ package com.alarming.manage.controller;
 
 import com.alarming.manage.objectdata.Student;
 import com.alarming.manage.service.StudentService;
+import com.alarming.manage.utils.PageModel;
 import com.alarming.manage.utils.ResultVOUtil;
 import com.alarming.manage.vo.ResultVO;
 import io.swagger.annotations.Api;
@@ -78,5 +79,25 @@ public class StudentController {
         Integer studentCount = studentService.findStudentCount();
         return ResultVOUtil.success(studentCount);
     }
+    //院系分页查询
+    @GetMapping("/findDepartmentStudentPage")
+    public ResultVO findDepartmentStudentPage(@RequestParam(value = "pageNum" , defaultValue = "1")int pageNum,
+                                    @RequestParam("pageSize")int pageSize,@RequestParam("departmentId") Integer departmentId){
+        Map studentPage = studentService.findDepartmentStudentPage(pageNum, pageSize, departmentId);
+        return ResultVOUtil.success(studentPage);
+    }
+    //班级分页查询
+    @GetMapping("/findClassStudentPage")
+    public ResultVO findClassStudentPage(@RequestParam(value = "pageNum" , defaultValue = "1")int pageNum,
+                                         @RequestParam("pageSize")int pageSize,@RequestParam("classId") Integer classId){
 
+        Map map = studentService.findClassStudentPage(pageNum, pageSize, classId);
+        return ResultVOUtil.success(map);
+    }
+    //按学号查询个人信息
+    @GetMapping("/findByUser/{user}")
+    public ResultVO findByUser(@PathVariable String user){
+        Student student = studentService.findByUser(user);
+        return ResultVOUtil.success(student);
+    }
 }

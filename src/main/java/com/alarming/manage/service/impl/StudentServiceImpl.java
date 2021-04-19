@@ -10,17 +10,17 @@ import com.alarming.manage.objectdata.SClass;
 import com.alarming.manage.objectdata.Student;
 import com.alarming.manage.service.StudentService;
 import com.alarming.manage.utils.DateUtil;
+import com.alarming.manage.utils.PageModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author GUO
@@ -48,6 +48,16 @@ public class StudentServiceImpl implements StudentService {
             return student;
         }else {
             log.info("【用户登录】登录失败，user={},password={}",user,password);
+            return null;
+        }
+    }
+
+    @Override
+    public Student findByUser(String user) {
+        if (user.length()>0&&!user.equals("")){
+        Student student = studentDao.findByUser(user);
+            return student;
+        }else {
             return null;
         }
     }
@@ -138,6 +148,32 @@ public class StudentServiceImpl implements StudentService {
     public Integer findStudentCount() {
         Integer studentCount = studentDao.countAllBy();
         return studentCount;
+    }
+
+    @Override
+    public Map findDepartmentStudentPage(Integer pageNum, Integer pageSize, Integer departmentId) {
+        Map map=new HashMap();
+        List<Student> studentList = studentDao.findByDepartmentId(departmentId);
+        PageModel<Student> studentPage=new PageModel<>(studentList,pageSize);
+        List<Student> studentPageObjects = studentPage.getObjects(pageNum);
+        map.put("content",studentPageObjects);
+        map.put("total",studentList.size());
+        map.put("pageNum",pageNum);
+        map.put("pageSize",pageSize);
+        return map;
+    }
+
+    @Override
+    public Map findClassStudentPage(Integer pageNum, Integer pageSize, Integer classId) {
+        Map map=new HashMap();
+        List<Student> studentList = studentDao.findBysClass(classId);
+        PageModel<Student> studentPage=new PageModel<>(studentList,pageSize);
+        List<Student> studentPageObjects = studentPage.getObjects(pageNum);
+        map.put("content",studentPageObjects);
+        map.put("total",studentList.size());
+        map.put("pageNum",pageNum);
+        map.put("pageSize",pageSize);
+        return map;
     }
 
 }

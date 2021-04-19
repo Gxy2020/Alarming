@@ -60,7 +60,6 @@ public class SClassServiceImpl implements SClassService {
 
     /**
      * 添加班主任,查询没有班主任的班级
-     *
      * @param departmentId
      * @return
      */

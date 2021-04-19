@@ -73,6 +73,7 @@ public class TeacherController {
         boolean b = teacherService.delTeacher(id);
         return b ? ResultVOUtil.success() : ResultVOUtil.error(105, "删除失败");
     }
+    //查询教师是否存在
     @GetMapping("/findByUser/{user}")
     public ResultVO findByUser(@PathVariable String user){
         Teacher teacher = teacherService.findByUser(user);
@@ -81,5 +82,11 @@ public class TeacherController {
         }else {
             return ResultVOUtil.error(500,"用户名已存在");
         }
+    }
+    //获取教师信息
+    @GetMapping("/getUser/{user}")
+    public ResultVO getUser(@PathVariable String user){
+        Teacher teacher = teacherService.findByUser(user);
+        return ResultVOUtil.success(teacher);
     }
 }

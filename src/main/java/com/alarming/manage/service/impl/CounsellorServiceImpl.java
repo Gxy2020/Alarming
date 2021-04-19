@@ -5,6 +5,7 @@ import com.alarming.manage.dao.DepartmentDao;
 import com.alarming.manage.objectdata.Counsellor;
 import com.alarming.manage.objectdata.Department;
 import com.alarming.manage.service.CounsellorService;
+import com.alarming.manage.utils.ConvertUtil;
 import com.alarming.manage.utils.DateUtil;
 import com.alarming.manage.vo.CounsellorVO;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author GUO
@@ -149,5 +151,12 @@ public class CounsellorServiceImpl implements CounsellorService{
         };
         List<Counsellor> counsellorList = counsellorDao.findAll(specification);
         return counsellorList;
+    }
+
+    @Override
+    public Map getByUser(String user) {
+        Counsellor counsellor = counsellorDao.findByUser(user);
+        Map<String, Object> map = ConvertUtil.object2Map(counsellor);
+        return map;
     }
 }

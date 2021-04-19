@@ -15,12 +15,24 @@ import java.util.Map;
  * @Date 2021/4/17 15:11
  */
 public interface ScoreService {
-    List<ScoresVO>findAll();
-    List<ScoresVO>findByCodeOrClassId(String code,Integer classId);
+    List<ScoresVO> findAll();
+    List<ScoresVO>findScoreByStuId(String stuId);
+    List<ScoresVO>findByStuIdAndCodeAndClassId(String studId,String code,Integer classId);
+
+
+    List<ScoresVO> findByCodeOrClassId(String code, Integer classId);
     boolean saveScore(Score score);
+
     boolean delScore(Integer id);
-    boolean updateScore(Integer id,Integer score);
-    List<Map<String,Object>> findCodToAverage();
-    List<Map<String,Object>> findCodeFailed();
-//    Page<ScoresVO> findScoresVOPage(Integer pageNum, Integer size);
+
+    boolean updateScore(Integer id, Integer score);
+
+    List<Map<String, Object>> findCodToAverage();
+
+    List<Map<String, Object>> findCodeFailed();
+
+    List<ScoresVO> findByDepartmentId(Integer departmentId);
+    List<ScoresVO>findByClassId(Integer classId);
+    //    Page<ScoresVO> findScoresVOPage(Integer pageNum, Integer size);
+    List<ScoresVO> findByDepartmentIdCodeOrClassId(Integer departmentId,String code, Integer classId);
 }

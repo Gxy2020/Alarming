@@ -45,10 +45,25 @@ public class ScoreServiceImpl implements ScoreService{
         return scoresVOList;
     }
 
+    //按学号查询个人成绩
+    @Override
+    public List<ScoresVO> findScoreByStuId(String stuId) {
+        List<Score> scoreList = scoreDao.findByStuId(stuId);
+        List<ScoresVO> scoresVOList = scoresToScoresVO(scoreList);
+        return scoresVOList;
+    }
+
+    @Override
+    public List<ScoresVO> findByStuIdAndCodeAndClassId(String stuId,String code,Integer classId) {
+        List<Score> scoreList = scoreDao.findByStuIdAndCodeAndClassId(stuId, code,classId);
+        List<ScoresVO> scoresVOList = scoresToScoresVO(scoreList);
+        return scoresVOList;
+    }
+
     @Override
     public List<ScoresVO> findByCodeOrClassId(String code, Integer classId) {
         if (code.length() != 0 & classId != null) {
-            log.info(code, classId);
+//            log.info(code, classId);
             Specification<Score> specification = new Specification<Score>() {
                 @Override
                 public Predicate toPredicate(Root<Score> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
@@ -175,6 +190,74 @@ public class ScoreServiceImpl implements ScoreService{
             mapList.add(map);
         }
         return mapList;
+    }
+
+    @Override
+    public List<ScoresVO> findByDepartmentId(Integer departmentId) {
+        List<Score> scoreList = scoreDao.findByDepartmentId(departmentId);
+        List<ScoresVO> scoresVOList = scoresToScoresVO(scoreList);
+        return scoresVOList;
+    }
+
+    @Override
+    public List<ScoresVO> findByClassId(Integer classId) {
+        List<Score> scoreList = scoreDao.findByClassId(classId);
+        List<ScoresVO> scoresVOList = scoresToScoresVO(scoreList);
+        return scoresVOList;
+    }
+
+    //按院系和课程查找成绩
+    @Override
+    public List<ScoresVO> findByDepartmentIdCodeOrClassId(Integer departmentId, String code, Integer classId) {
+        if (code.length() != 0 & classId != null) {
+//            log.info(code, classId);
+            Specification<Score> specification = new Specification<Score>() {
+                @Override
+                public Predicate toPredicate(Root<Score> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                    Path<Object> p1 = root.get("code");
+                    Path<Object> p2 = root.get("classId");
+                    Predicate equal = criteriaBuilder.equal(p1, code);
+                    Predicate equal1 = criteriaBuilder.equal(p2, classId);
+                    Predicate and = criteriaBuilder.and(equal, equal1);
+                    return and;
+                }
+            };
+            List<Score> scoreList = scoreDao.findAll(specification);
+            List<ScoresVO> scoresVOList = scoresToScoresVO(scoreList);
+            return scoresVOList;
+        }
+        //班级查找
+        if (code.equals("") & classId != null) {
+            log.info(code, classId);
+            List<Score> scoreList = scoreDao.findByClassId(classId);
+            List<ScoresVO> scoresVOList = scoresToScoresVO(scoreList);
+            return scoresVOList;
+        }
+        //院系和课程查找
+        if (code.length() != 0 & classId == null) {
+//            log.info(code, classId);
+            Specification<Score> specification=new Specification<Score>() {
+                @Override
+                public Predicate toPredicate(Root<Score> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+
+                    Path<Object> p1 = root.get("code");
+                    Path<Object> p2 = root.get("departmentId");
+                    Predicate equal = criteriaBuilder.equal(p1, code);
+                    Predicate equal1 = criteriaBuilder.equal(p2, departmentId);
+                    return criteriaBuilder.and(equal, equal1);
+                }
+            };
+            List<Score> scoreList = scoreDao.findAll(specification);
+//            List<Score> scoreList = scoreDao.findByCode(code);
+            List<ScoresVO> scoresVOList = scoresToScoresVO(scoreList);
+            return scoresVOList;
+        } else {
+//            log.info(code, classId);
+            List<Score> scoreList = scoreDao.findByDepartmentId(departmentId);
+            List<ScoresVO> scoresVOList = scoresToScoresVO(scoreList);
+            return scoresVOList;
+        }
+
     }
 
     //对象转换方法

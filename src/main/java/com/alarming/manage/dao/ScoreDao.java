@@ -15,4 +15,7 @@ import java.util.List;
 public interface ScoreDao extends JpaRepository<Score,Integer>, JpaSpecificationExecutor<Score> {
     List<Score>findByCode(String code);
     List<Score>findByClassId(Integer classId);
+    List<Score>findByDepartmentId(Integer departmentId);
+    List<Score>findByStuId(String studId);
+    List<Score>findByStuIdAndCodeAndClassId(String studId,String code,Integer classId);
 }

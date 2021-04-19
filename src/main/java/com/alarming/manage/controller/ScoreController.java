@@ -63,9 +63,40 @@ public class ScoreController {
         List<Map<String, Object>> mapList = scoreService.findCodToAverage();
         return ResultVOUtil.success(mapList);
     }
+    //查找挂科占比
     @GetMapping("/findCodeFailed")
     public ResultVO findCodeFailed(){
         List<Map<String, Object>> mapList =scoreService.findCodeFailed();
         return ResultVOUtil.success(mapList);
+    }
+    //通过院系查找该院学生成绩
+    @GetMapping("/findByDepartmentId/{departmentId}")
+    public ResultVO findByDepartmentId(@PathVariable Integer departmentId){
+        List<ScoresVO> scoresVOList = scoreService.findByDepartmentId(departmentId);
+        return ResultVOUtil.success(scoresVOList);
+    }
+    //查询班级成绩
+    @GetMapping("/findByClassId/{classId}")
+    public ResultVO findByClassId(@PathVariable Integer classId){
+        List<ScoresVO> scoresVOList = scoreService.findByClassId(classId);
+        return ResultVOUtil.success(scoresVOList);
+    }
+
+    @PostMapping("/findByDepartmentIdCodeOrClassId")
+    public ResultVO findByDepartmentIdCodeOrClassId(Integer departmentId, String code, Integer classId){
+        List<ScoresVO> scoresVOList = scoreService.findByDepartmentIdCodeOrClassId(departmentId, code, classId);
+        return ResultVOUtil.success(scoresVOList);
+    }
+    //按学号查询个人成绩
+    @GetMapping("/findScoreByStuId/{stuId}")
+    public ResultVO findScoreByStuId(@PathVariable String stuId){
+        List<ScoresVO> scoresVOList = scoreService.findScoreByStuId(stuId);
+        return ResultVOUtil.success(scoresVOList);
+    }
+    //按学号与课程查询个人成绩
+    @PostMapping("/findByStuIdAndCodeAndClassId")
+    public ResultVO findByStuIdAndCodeAndClassId(String stuId,String code,Integer classId){
+        List<ScoresVO> scoresVOList = scoreService.findByStuIdAndCodeAndClassId(stuId,code,classId);
+        return ResultVOUtil.success(scoresVOList);
     }
 }

@@ -5,6 +5,7 @@ import com.alarming.manage.objectdata.Department;
 import com.alarming.manage.vo.CounsellorVO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author GUO
@@ -22,5 +23,5 @@ public interface CounsellorService {
     List<Counsellor>findCounsellors();
     List<Counsellor>findByUsernameOrPhone(String username, String phone);
     List<Counsellor>findByDepartmentOrUsernameOrPhone(Department department, String username, String phone);
-
+    Map getByUser(String user);
 }

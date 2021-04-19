@@ -106,4 +106,9 @@ public class CounsellorController {
             return ResultVOUtil.success(counsellorList);
         }
     }
+    @GetMapping("/findByUser/{user}")
+    public ResultVO  findByUser(@PathVariable String user){
+        Map counsellor = counsellorService.getByUser(user);
+        return ResultVOUtil.success(counsellor);
+    }
 }
