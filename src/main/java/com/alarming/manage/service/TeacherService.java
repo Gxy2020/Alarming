@@ -2,7 +2,9 @@ package com.alarming.manage.service;
 
 import com.alarming.manage.objectdata.Department;
 import com.alarming.manage.objectdata.Teacher;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,4 +20,5 @@ public interface TeacherService {
     boolean saveTeacher(Teacher teacher, Integer departmentId,Integer classId);
     boolean delTeacher(Integer id);
     Teacher findByUser(String user);
+    void updateTeacher(String password,String username,String sex,String phone,String email,Integer id);
 }

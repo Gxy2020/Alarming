@@ -5,7 +5,9 @@ import com.alarming.manage.objectdata.Student;
 import io.swagger.models.auth.In;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,4 +34,9 @@ public interface StudentDao extends JpaRepository<Student,Integer> , JpaSpecific
     @Query(value = "select * from t_student where sd_id=?1",nativeQuery = true)
     List<Student>findByDepartmentId(Integer departmentId);
     Integer countAllBy();
+
+    @Transactional
+    @Modifying
+    @Query("update Student set password=?1,username=?2,sex=?3,phone=?4,email=?5 where id=?6")
+    void updateStudent(String password,String username,String sex,String phone,String email,Integer id);
 }

@@ -24,4 +24,8 @@ public interface CounsellorService {
     List<Counsellor>findByUsernameOrPhone(String username, String phone);
     List<Counsellor>findByDepartmentOrUsernameOrPhone(Department department, String username, String phone);
     Map getByUser(String user);
+    //更新个人信息
+    void updateCounsellor(String password,String username,String sex,String phone,String email,Integer id);
+    //通过院系查找辅导员
+    List<Counsellor>findByDepartmentId(Integer departmentId);
 }

@@ -40,4 +40,9 @@ public class MessageController {
         List<Message> messageList = messageService.findByReceiverId(receiverId);
         return ResultVOUtil.success(messageList);
     }
+    @PostMapping("/updateMessages")
+    public ResultVO updateMessages(String source,Integer id){
+        messageService.updateMessages(source, id);
+        return ResultVOUtil.success();
+    }
 }

@@ -92,4 +92,9 @@ public class TeacherServiceImpl implements TeacherService {
         Teacher teacher = teacherDao.findByUser(user);
         return teacher;
     }
+
+    @Override
+    public void updateTeacher(String password, String username, String sex, String phone, String email, Integer id) {
+        teacherDao.updateTeacher(password, username, sex, phone, email, id);
+    }
 }

@@ -100,4 +100,9 @@ public class StudentController {
         Student student = studentService.findByUser(user);
         return ResultVOUtil.success(student);
     }
+    @PostMapping("/updateStudent")
+    public ResultVO updateStudent(String password,String username,String sex,String phone,String email,Integer id){
+        studentService.updateStudent(password, username, sex, phone, email, id);
+        return ResultVOUtil.success();
+    }
 }

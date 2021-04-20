@@ -40,4 +40,9 @@ public class MessageServiceImpl implements MessageService {
         List<Message> messageList = messageDao.findByReceiverId(receiverId);
         return messageList;
     }
+
+    @Override
+    public void updateMessages(String source, Integer id) {
+        messageDao.updateMessages(source, id);
+    }
 }

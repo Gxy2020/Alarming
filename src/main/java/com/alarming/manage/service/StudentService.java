@@ -31,5 +31,7 @@ public interface StudentService {
     Integer findStudentCount();
     Map findDepartmentStudentPage(Integer pageNum, Integer pageSize, Integer departmentId);
     Map findClassStudentPage(Integer pageNum, Integer pageSize,Integer classId);
+//    更新用户
+    void updateStudent(String password,String username,String sex,String phone,String email,Integer id);
 
 }

@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -158,5 +159,17 @@ public class CounsellorServiceImpl implements CounsellorService{
         Counsellor counsellor = counsellorDao.findByUser(user);
         Map<String, Object> map = ConvertUtil.object2Map(counsellor);
         return map;
+    }
+
+    @Override
+    public void updateCounsellor(String password, String username, String sex, String phone, String email, Integer id) {
+        counsellorDao.updateCounsellor(password, username, sex, phone, email, id);
+    }
+
+    @Override
+    public List<Counsellor> findByDepartmentId(Integer departmentId) {
+        Department one = departmentDao.getOne(departmentId);
+        List<Counsellor> counsellorList = counsellorDao.findByDepartment(one);
+        return counsellorList;
     }
 }

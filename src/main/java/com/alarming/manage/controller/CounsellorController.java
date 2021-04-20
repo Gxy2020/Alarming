@@ -111,4 +111,15 @@ public class CounsellorController {
         Map counsellor = counsellorService.getByUser(user);
         return ResultVOUtil.success(counsellor);
     }
+    //更新操作
+    @PostMapping("/updateCounsellor")
+    public ResultVO updateCounsellor(String password, String username, String sex, String phone, String email, Integer id){
+        counsellorService.updateCounsellor(password, username, sex, phone, email, id);
+        return ResultVOUtil.success();
+    }
+   @GetMapping("/findByDepartmentId/{departmentId}")
+   public ResultVO findByDepartmentId(@PathVariable Integer departmentId){
+       List<Counsellor> counsellorList = counsellorService.findByDepartmentId(departmentId);
+       return ResultVOUtil.success(counsellorList);
+   }
 }

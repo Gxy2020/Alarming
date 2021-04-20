@@ -89,4 +89,10 @@ public class TeacherController {
         Teacher teacher = teacherService.findByUser(user);
         return ResultVOUtil.success(teacher);
     }
+    //更新操作
+    @PostMapping("/updateTeacher")
+    public ResultVO updateTeacher(String password, String username, String sex, String phone, String email, Integer id){
+        teacherService.updateTeacher(password, username, sex, phone, email, id);
+        return ResultVOUtil.success();
+    }
 }

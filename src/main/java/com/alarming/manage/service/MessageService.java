@@ -14,4 +14,6 @@ public interface MessageService {
     boolean sendMessage(Message message);
     List<Message> findBySendId(String sendId);
     List<Message>findByReceiverId(String receiverId);
+//    辅导员确认预约
+    void updateMessages(String source,Integer id);
 }

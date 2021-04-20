@@ -176,4 +176,9 @@ public class StudentServiceImpl implements StudentService {
         return map;
     }
 
+    @Override
+    public void updateStudent(String password, String username, String sex, String phone, String email, Integer id) {
+        studentDao.updateStudent(password, username, sex, phone, email, id);
+    }
+
 }
